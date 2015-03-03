@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
-
+use App\organisation;
+use DB;
+use Auth;
 class HomeController extends Controller {
 
 	/*
@@ -33,9 +35,31 @@ class HomeController extends Controller {
 		return view('home');
 	}
     
-    	public function dashboard()
+   	public function organisationDashboard($id)
 	{
-		return view('dashboard');
+		$organisation = organisation::where('id', $id)->first();
+		// ->where('name', 'John')->first();
+		return view('dashboard_organisation')->with('organisation', $organisation);
+	}
+	
+	
+	
+	public function dashboard()
+	{
+		$user = Auth::getUser();
+		$orgs = DB::table('users')
+            ->join('organisation_user', 'users.id', '=', 'organisation_user.user_id')
+            ->join('organisations', 'organisations.id', '=', 'organisation_user.organisation_id')
+            ->select('organisations.id', 'organisations.name')
+			->where ('users.id', $user->id)	
+			->get(); 
+		// $o = DB::table('organisations')->get();
+		//$organisation = organisation::where('id', $id)->first();
+		// ->where('name', 'John')->first();
+	    // echo '<pre>';
+	    // var_dump($o);
+	    // echo '</pre>';
+		return view('dashboard')->with('organisations', $orgs);
 	}
 
 }

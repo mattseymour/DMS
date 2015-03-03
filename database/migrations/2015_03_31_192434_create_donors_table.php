@@ -16,12 +16,15 @@ class CreateDonorsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('address');
-            $table->string('postcode');
-            $table->string('phonenumber');
-            $table->boolean('giftaid');
+			$table->integer('envelope_number')->unsigned();
+			$table->string('title');
+			$table->string('first_name');
+			$table->string('last_name');
+			$table->string('address');
+			$table->integer('organisation_id')->unsigned();
+			$table->foreign('organisation_id')->references('id')->on('organisations');
+			
+			
 		});
 	}
 
