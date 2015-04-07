@@ -2,8 +2,12 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\donors;
+use App\Donor;
 use Request;
+use Input;
+use DB;
+use Redirect;
+use Validator;
 
 class DonorController extends Controller {
 
@@ -20,9 +24,10 @@ class DonorController extends Controller {
     
     //return views for /Donors
     
-	public function index()
+	public function index($id)
 	{
-		return view('donors.donors');
+		$donors = Donor::where('organisation_id', $id)->get();
+		return view('donors.donors')->with(array('id' => $id, 'donors'=>$donors));
 	}
     
     public function view_donors()
@@ -37,9 +42,9 @@ class DonorController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($id)
 	{
-		return view('donors.add_donor');
+		return view('donors.add_donor')->with('id', $id);
 	}
 
 	/**
@@ -47,13 +52,49 @@ class DonorController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($id)
 	{
 		$input = Request::all();
-        
-        donors::create($input);
-        
-        return redirect('/view_donors');
+		$number = $input['envelope_number'];
+		if (!empty($number))
+		{
+			Validator::extend('envelope_number_fail', function($attr, $value, $params){
+				$exists = Donor::where(array('organisation_id' => $params[0], 'envelope_number' => Input::get('envelope_number')))->first();
+				if ($exists){
+					// true is false in this case. We want to fail if items does exist 
+					return false;
+				}
+				return true;
+			});
+			$val = Validator::make($input, ['envelope_number'=>'envelope_number_fail:'.$id]);
+			if ($val->fails())
+			{
+				return Redirect::to('/dashboard/'.$id.'/donor/create/')->withErrors($val);
+			}
+			$input['organisation_id'] = $id;
+			$input['envelope_number'] = $number;
+			$donor = Donor::create($input);
+		}
+		else
+		{
+			DB::beginTransaction();
+			try{
+				$latestEnvelope = Donor::where(array('organisation_id' =>$id))->orderBy('envelope_number', 'desc')->first();
+
+				$input['organisation_id'] = $id;
+		
+				$input['envelope_number'] = $latestEnvelope->envelope_number + 1;
+				$donor = Donor::create($input);
+				DB::commit();
+			}
+			catch (Exception $e)
+			{
+				DB::rollback();
+
+			}	
+		}
+
+        return redirect('/dashboard/'.$id.'/donor/view/'.$donor->id);
 	}
 
 	/**

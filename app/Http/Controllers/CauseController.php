@@ -25,6 +25,8 @@ class CauseController extends Controller {
 	{
 		$causes = Cause::where('organisation_id', $id)->get();
         return view('cause.causes')->with(array('causes'=>$causes, 'id'=>$id));
+		
+		
 	}
 
 	/**
@@ -63,7 +65,7 @@ class CauseController extends Controller {
 	 */
 	public function show($id, $cause_id)
 	{
-		$cause = Cause::where(array('organisation_id' => $id, 'id' => $cause_id))->get();
+		$cause = Cause::find(array('organisation_id' => $id, 'id' => $cause_id))->first();
 		return view('cause.show')->with(array('cause' => $cause, 'id' => $id));
 	}
 

@@ -6,7 +6,24 @@
 
 @section('content')
 
-{!! Form::open(['url' => 'donors/create']) !!}
+@if ($errors->has())
+
+@foreach ($errors->all() as $error)
+
+{{ $error }}
+
+@endforeach
+
+@endif
+
+{!! Form::open(['url' => '/dashboard/'.$id.'/donor/create/']) !!}
+
+
+
+<div class="form-group">
+{!! Form::label('envelope_number', 'Envelope Number:') !!}
+{!! Form::input('number','envelope_number', '', ['class' => 'form-control']) !!}
+</div>
 
 <div class="form-group">
 {!! Form::label('title', 'Title:') !!}

@@ -6,9 +6,12 @@
 
 @section('content')
       <div class="row">
-
+		  @foreach($donors as $donor)
+		  {{ $donor->id }}
+		  {{ $donor->envelope_number }}
+		  @endforeach
         <div class="col-xs-6">
-          <a href="/add_donor" class="btn btn-default btn-lg">
+          <a href="/dashboard/{{$id}}/donor/create/" class="btn btn-default btn-lg">
             <span class="glyphicon glyphicon-plus" aria-hidden="true" style="font-size:5em;"></span>
           </a>
           <h4>Add Donor</h4>
@@ -16,7 +19,7 @@
 
 
         <div class="col-xs-6">
-          <a href="/view_donors" class="btn btn-default btn-lg">
+          <a href="/dashboard/{{$id}}/donor/view/" class="btn btn-default btn-lg">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size:5em;"></span>
           </a>
           <h4>View/Edit Donors</h4>

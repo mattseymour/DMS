@@ -16,12 +16,12 @@
             
             @foreach ($causes as $cause)
           <tr>
-            <td>{{ $cause->cause_name }}</td>
-            <td>{{ $cause->cause_description }}</td>
+            <td>{{ $cause->name }}</td>
+            <td>{{ $cause->description }}</td>
             <td>
     <div class="btn-group" role="group" aria-label="Default button group">
       <button type="button" class="btn btn-warning">Edit</button>
-      <button type="button" class="btn btn-primary">View</button>
+      <a type="button" class="btn btn-primary" href="/dashboard/{{$id}}/cause/show/{{$cause->id}}">View</a>
     </div>
             </td> 
           </tr>
