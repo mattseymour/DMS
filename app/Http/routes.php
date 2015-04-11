@@ -22,7 +22,9 @@ Route::get('dashboard', 'HomeController@dashboard');
 Route::get('dashboard/{id}/donor', 'DonorController@index');
 Route::post('dashboard/{id}/donor/create', 'DonorController@store');
 Route::get('dashboard/{id}/donor/create', 'DonorController@create');
-Route::get('dashboard/{id}/donor/view{donor_id}', 'DonorController@view_donors');
+Route::get('dashboard/{id}/donor/view/', 'DonorController@view_donors');
+Route::get('dashboard/{id}/donor/view/{donor_id}', 'DonorController@show');
+
 
 Route::get('donations', 'DonationController@index');
 

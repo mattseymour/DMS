@@ -30,9 +30,9 @@ class DonorController extends Controller {
 		return view('donors.donors')->with(array('id' => $id, 'donors'=>$donors));
 	}
     
-    public function view_donors()
+    public function view_donors($id)
 	{
-		$donors = donors::all();
+		$donors = donor::where('organisation_id', $id)->get();
         return view('donors.view_donors')->with('donors', $donors);
 	}
     
@@ -103,9 +103,12 @@ class DonorController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	
+	//where(array('organisation_id' => $params[0], 'envelope_number' => Input::get('envelope_number')))->first();
+	public function show($id, $donor_id)
 	{
-		//
+			$donors = donor::where(array('organisation_id' => $id, 'id' => $donor_id))->get();
+	        return view('donors.view_donors')->with('donors', $donors);
 	}
 
 	/**
@@ -114,6 +117,7 @@ class DonorController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
+	
 	public function edit($id)
 	{
 		//

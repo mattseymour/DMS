@@ -35,6 +35,11 @@
           </tr>
             @endforeach
 
+            <tr>
+            <td>
+                <a class="btn btn-success" href="/dashboard/{{$donor->organisation_id}}/donor/create">Add</a>
+            </td>
+          </tr>
         </table>
       </div>
 
