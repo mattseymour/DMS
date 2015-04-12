@@ -10,8 +10,8 @@
 
 
 <div class="form-group">
-{!! Form::label('donor_id', 'Donor ID:') !!}
-{!! Form::text('donor_id', 'Envelope Number', ['class' => 'form-control']) !!}
+{!! Form::label('donor_id', 'Envelope Number:') !!}
+{!! Form::input('number', 'donor_id', '123', ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
@@ -23,7 +23,7 @@
 {!! Form::label('amount', 'Amount:') !!}
    <div class="input-group">
    <span class="input-group-addon">£</span>
-{!! Form::text('amount', '£6.50', ['class' => 'form-control']) !!}
+{!! Form::input('number','amount', '6.50', ['class' => 'form-control']) !!}
    </div>
 </div>
 
@@ -34,7 +34,7 @@
 
 <div class="form-group">
 {!! Form::label('payment_method', 'Payment Method:') !!}
-{!! Form::text('payment_method', 'Payment Method', ['class' => 'form-control']) !!}
+{!! Form::select('cause', array(1 => 'Cash', 2 => 'Cheque', 3 => 'Direct Debit'), 'Sunday Service', ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

@@ -22,7 +22,7 @@
 
 <div class="form-group">
 {!! Form::label('envelope_number', 'Envelope Number:') !!}
-{!! Form::input('number','envelope_number', '', ['class' => 'form-control']) !!}
+{!! Form::input('number','envelope_number', '123', ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

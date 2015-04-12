@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\causes;
+use App\Cause;
 use App\donations;
 use Request;
 
@@ -13,9 +13,9 @@ class DonationController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($id)
 	{
-		return view('donations.donations');
+		return view('donations.donations')->with('id', $id);
 	}
 	
 	
@@ -32,9 +32,11 @@ class DonationController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	
+	//and fetch cause names for form
+	public function create($id)
 	{
-        $causes = causes::lists('cause_name', 'cause_name');
+        $causes = Cause::select('id', 'name')->where(array('organisation_id' => $id, 'active' => 1))->lists('name','id');
         return view('donations.add_donation')->with('causes', $causes);
 	}
 

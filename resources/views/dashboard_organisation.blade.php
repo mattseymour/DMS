@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('header')
-    <h1 class="page-header">Gift Aid Management {{ $organisation->name }}</h1>
+    <h1 class="page-header">{{ $organisation->name }}</h1>
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
       <div class="row">
 
         <div class="col-xs-6 col-sm-3 placeholder">
-          <a href="/dashboard/{{$organisation->id}}/donations" class="btn btn-default btn-lg">
+          <a href="/dashboard/{{$organisation->id}}/donation" class="btn btn-default btn-lg">
             <span class="glyphicon glyphicon-gbp" aria-hidden="true" style="font-size:5em;"></span>
           </a>
           <h4>Donations</h4>

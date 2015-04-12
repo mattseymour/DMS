@@ -36,6 +36,9 @@ class CreateDonationsTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::drop('causes');
+		Schema::drop('users');
+		Schema::drop('donors');
 		Schema::drop('donations');
 	}
 

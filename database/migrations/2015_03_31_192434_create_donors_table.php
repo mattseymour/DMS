@@ -21,6 +21,8 @@ class CreateDonorsTable extends Migration {
 			$table->string('first_name');
 			$table->string('last_name');
 			$table->string('address');
+			$table->string('postcode');
+			$table->boolean('giftaid')->default(false);
 			$table->integer('organisation_id')->unsigned();
 			$table->foreign('organisation_id')->references('id')->on('organisations');
 			
@@ -35,6 +37,7 @@ class CreateDonorsTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::drop('organisations');
 		Schema::drop('donors');
 	}
 

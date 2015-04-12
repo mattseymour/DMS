@@ -20,7 +20,7 @@
           </tr>
             @foreach ($donors as $donor)
           <tr>
-            <td>{{ $donor->id }}</td>
+            <td>{{ $donor->envelope_number }}</td>
             <td>{{ $donor->first_name }}</td>
             <td>{{ $donor->last_name }}</td>
             <td>{{ $donor->address }}</td>

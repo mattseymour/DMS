@@ -39,9 +39,11 @@ class CreateOrganisationsTable extends Migration {
 	 * @return void
 	 */
 	public function down()
-	{
-		Schema::drop('organisations');
+	{	
 		Schema::drop('organisation_user');
+		Schema::drop('users');
+		Schema::drop('organisations');
+		
 		
 	}
 

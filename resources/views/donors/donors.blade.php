@@ -6,10 +6,6 @@
 
 @section('content')
       <div class="row">
-		  @foreach($donors as $donor)
-		  {{ $donor->id }}
-		  {{ $donor->envelope_number }}
-		  @endforeach
         <div class="col-xs-6">
           <a href="/dashboard/{{$id}}/donor/create/" class="btn btn-default btn-lg">
             <span class="glyphicon glyphicon-plus" aria-hidden="true" style="font-size:5em;"></span>

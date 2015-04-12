@@ -55,9 +55,10 @@ class OrganisationController extends Controller {
         $org = Organisation::create($input);
 		
 		$result = DB::table('organisation_user')->insertGetId(
-				array('organisation_id' => $org->id, 'user_id' => $user->id, 'owner' => true)
+				array('organisation_id' => $org->id, 'user_id' => $user->id, 'owner_id' => true)
 		);
-        return redirect('/dashboard/' . $org->id);
+        //return redirect('/dashboard/' . $org->id);
+		return redirect('/dashboard/');
 	}
 
 	/**
