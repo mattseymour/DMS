@@ -6,17 +6,17 @@
 
 @section('content')
 
-{!! Form::open(['url' => 'donations/create']) !!}
+{!! Form::open(['url' => 'dashboard/'.$id.'/donation/create']) !!}
 
 
 <div class="form-group">
-{!! Form::label('donor_id', 'Envelope Number:') !!}
-{!! Form::input('number', 'donor_id', '123', ['class' => 'form-control']) !!}
+{!! Form::label('envelope_id', 'Envelope Number:') !!}
+{!! Form::input('number', 'envelope_id', '123', ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
-{!! Form::label('cause', 'Cause') !!}
-{!! Form::select('cause', $causes, 'Sunday Service', ['class' => 'form-control']) !!}
+{!! Form::label('cause_id', 'Cause') !!}
+{!! Form::select('cause_id', $causes, 'Sunday Service', ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

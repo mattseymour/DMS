@@ -3,8 +3,9 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Cause;
-use App\donations;
+use App\Donation;
 use Request;
+use Auth;
 
 class DonationController extends Controller {
 
@@ -21,7 +22,7 @@ class DonationController extends Controller {
 	
 	public function view_donations()
 	{
-		$donations = donations::all();
+		$donations = Donation::all();
         return view('donations.view_donations')->with('donations', $donations);
 	}
 	
@@ -37,7 +38,7 @@ class DonationController extends Controller {
 	public function create($id)
 	{
         $causes = Cause::select('id', 'name')->where(array('organisation_id' => $id, 'active' => 1))->lists('name','id');
-        return view('donations.add_donation')->with('causes', $causes);
+        return view('donations.add_donation')->with('causes', $causes)->with('id', $id);
 	}
 
 	/**
@@ -45,13 +46,16 @@ class DonationController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($id)
 	{
-        $input = Request::all();
+		$input = Request::all();
+		//get userID and push to array.
+		$user = Auth::user()->id;
+		$input['user_id'] = $user;
         
-        donations::create($input);
+        $donation = Donation::create($input);
         
-        return redirect('/donations');
+        return redirect('/dashboard/'.$id.'/donation/view/'.$donation->id);
 	}
 
 	/**

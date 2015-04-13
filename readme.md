@@ -6,7 +6,7 @@ DMS offers Donor and Donation management, Cause and Fund administration and Gift
 
 ## Official Documentation
 
-Documentation for the Donation Management System Applicaiton can be found on the [DMS website](http://proudr.uk/donor).
+Documentation for the Donation Management System Applicaiton can be found on the [DMS website](http://curwen.github.io/DMS).
 For training or technical support please contact admin@proudr.uk
 
 

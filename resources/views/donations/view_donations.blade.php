@@ -18,10 +18,10 @@
           </tr>
             @foreach ($donations as $donation)
           <tr>
-            <td>{{ $donation->donor_id }}</td>
-            <td>{{ $donation->cause }}</td>
+            <td>{{ $donation->envelope_id }}</td>
+            <td>{{ $donation->cause_id }}</td>
             <td>{{ $donation->amount }}</td>
-            <td>{{ $donation->payment_date }}</td>
+            <td>{{ $donation->created_at }}</td>
             <td>{{ $donation->payment_method }}</td>
             <td>
     <div class="btn-group" role="group" aria-label="Default button group">

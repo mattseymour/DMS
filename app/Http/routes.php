@@ -21,8 +21,9 @@ Route::get('dashboard/{id}/donor/view/{donor_id}', 'DonorController@show');
 //Donation Routes
 Route::get('dashboard/{id}/donation', 'DonationController@index');
 Route::get('dashboard/{id}/donation/create', 'DonationController@create');
-Route::post('donation/create', 'DonationController@store');
-Route::get('view_donation', 'DonationController@view_donations');
+Route::post('dashboard/{id}/donation/create', 'DonationController@store');
+Route::get('dashboard/{id}/donation/view', 'DonationController@view_donations');
+Route::get('dashboard/{id}/donation/view/{donor_id}', 'DonationController@view_donations');
 
 
 
